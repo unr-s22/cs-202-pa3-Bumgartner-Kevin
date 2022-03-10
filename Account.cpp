@@ -6,7 +6,13 @@ Account::Account(Money initialDeposit){
 	accounting.push_back(initialDeposit);
 }
 
-//Produces the output required.
+//Compound constructor
+Account::Account(double initialDeposit){
+	Money initialMoney(initialDeposit);
+	accounting.push_back(initialMoney);
+}
+
+//Produces the output required.  Uses stringstream.
 std::string Account::printAccount(){
 	std::stringstream outString;
 	int deposits(0);
@@ -70,5 +76,25 @@ Money Account::getBalance(){
 //Adds a new deposit to the account.
 void Account::deposit(Money dep){
 	accounting.push_back(dep);
+	updateNeeded=true;
+}
+
+//Constructs a money object from a double, then deposits it to the account.
+void Account::deposit(double dep){
+	Money depo(dep);
+		accounting.push_back(depo);
+	updateNeeded=true;
+}
+
+//Adds a new deposit to the account.
+void Account::withdraw(Money dep){
+	Money depo(-dep.getCents());
+	updateNeeded=true;
+}
+
+//Constructs a money object from a double, then deposits it to the account.
+void Account::withdraw(double dep){
+	Money depo(-dep);
+		accounting.push_back(depo);
 	updateNeeded=true;
 }
