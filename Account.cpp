@@ -1,10 +1,12 @@
 #include "Money.cpp"
 #include "Account.h"
 
+//Simple constructor
 Account::Account(Money initialDeposit){
 	accounting.push_back(initialDeposit);
 }
 
+//Produces the output required.
 std::string Account::printAccount(){
 	std::stringstream outString;
 	int deposits(0);
@@ -48,7 +50,8 @@ std::string Account::printAccount(){
 	
 }
 
-
+//Brings balance up to speed with any new deposits or withdrawals.  Inefficient but sufficient.
+//This function also resets the updateNeeded flag to false.
 void Account::updateBalance(){
 	balance = 0;
 	for (auto trans:accounting){
@@ -57,11 +60,14 @@ void Account::updateBalance(){
 	updateNeeded=false;
 }
 
+//Retrieves the current balance.  If the balance needs to be updated first (updateNeeded=TRUE)
+//then it does this first.
 Money Account::getBalance(){
 	if (updateNeeded) this->updateBalance();
 	return balance;
 }
 
+//Adds a new deposit to the account.
 void Account::deposit(Money dep){
 	accounting.push_back(dep);
 	updateNeeded=true;

@@ -8,16 +8,19 @@
 
 class Account{
 private:
-	std::vector<Money> accounting;
-	bool updateNeeded=true;
-	Money balance=0;
+	std::vector<Money> accounting; //The accounting vector is a vector of moneys.
+	bool updateNeeded=true;        //Indicates if there has been a transaction since the last
+					//balance update.
+	Money balance=0;               //This is the current balance.
 public:
-	Account(Money);
-	std::string printAccount();
-	void updateBalance();
-	Money getBalance();
-	void deposit(Money);
-	//void withdraw(Money);
+	Account(Money);			//Initiates an account with an initial deposit.
+	std::string printAccount();	//Produces the output required by the assignment.
+	void updateBalance();		//Brings balance up to date with accounting.
+	Money getBalance();		//Returns the current balance.  If needed, the balance is updated.
+	void deposit(Money);		//Adds a deposit to the account.
+	//void withdraw(Money);		//Adds a withdrawal to the account.
 };
 
 #endif
+
+//TODO: We need to have deposit() and withdraw() throw errors if they receive negative values.
