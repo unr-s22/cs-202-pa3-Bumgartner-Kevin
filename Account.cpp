@@ -12,12 +12,17 @@ Account::Account(double initialDeposit){
 	accounting.push_back(initialMoney);
 }
 
-//Produces the output required.  Uses stringstream.
-std::string Account::printAccount(){
-	std::stringstream outString;
+//Simply wraps the extract() friend function as an insertion operator.
+std::ostream& operator<<(std::ostream& stream, Account account){
+	return extract(stream, account);
+}
+
+//Produces the output required.
+std::ostream& extract(std::ostream& stream, Account account){
 	int deposits(0);
 	int withdrawals(0);
-	Money balance = this->getBalance();
+	Money balance = account.getBalance();
+	std::vector<Money> accounting = account.getAccounting();
 
 	
 	for (auto trans:accounting){
@@ -28,32 +33,31 @@ std::string Account::printAccount(){
 		}
 	}
 	
-	outString << "Account Details" << std::endl
+	stream << "Account Details" << std::endl
 		<< "--------------------------" << std::endl
-		<< "Current Balance:"  << balance.getFigure()
+		<< "Current Balance:"  << balance
 		<< std::endl << "--------------------------" << std::endl
 		<< "Number of Deposits: " << deposits << std::endl
 		<< "--------------------" << std::endl;
 	int i=1;
 	for (auto trans:accounting){
 		if (!trans.isWithdrawal()){
-			outString << "(" << i << ") " << trans.getFigure() << std::endl;
+			stream << "(" << i << ") " << trans << std::endl;
 			i++;
 		}
 	}
-	outString << "--------------------------" << std::endl
+	stream << "--------------------------" << std::endl
 		<< "Number of Withdrawals: " << withdrawals << std::endl
 		<< "--------------------------" << std::endl;
 	i = 1;
 	for (auto trans:accounting){
 		if (trans.isWithdrawal()){
-			outString << "(" << i << ") " << trans.getFigure() << std::endl;
+			stream << "(" << i << ") " << trans << std::endl;
 			i++;
 		}
 	}
-	outString << "----";
-	return outString.str();
-	
+	stream << "----" << std::endl;	
+	return stream;
 }
 
 //Brings balance up to speed with any new deposits or withdrawals.  Inefficient but sufficient.
@@ -61,7 +65,7 @@ std::string Account::printAccount(){
 void Account::updateBalance(){
 	balance = 0;
 	for (auto trans:accounting){
-		balance = Money::add(trans, balance);
+		balance = trans+balance;
 	}
 	updateNeeded=false;
 }
@@ -71,6 +75,10 @@ void Account::updateBalance(){
 Money Account::getBalance(){
 	if (updateNeeded) this->updateBalance();
 	return balance;
+}
+
+std::vector<Money> Account::getAccounting(){
+	return accounting;
 }
 
 //Adds a new deposit to the account.

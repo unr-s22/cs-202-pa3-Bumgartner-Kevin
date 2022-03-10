@@ -29,12 +29,13 @@
 
 int main(){
 	Account account(300.23); 
-	std::cout << account.printAccount() << std::endl; //CHANGE THIS when '<<' has been overloaded
+	std::cout << account << std::endl;
 	account.deposit(200.00);
 	account.deposit(300.24);
 	account.deposit(501.22);
-	std::cout << account.printAccount() << std::endl; //CHANGE THIS when '<<' has been overloaded
+	std::cout << account << std::endl;
 	account.withdraw(300.10);
 	account.withdraw(201.34);
-	std::cout << account.printAccount() << std::endl; //CHANGE THIS when '<<' has been overloaded
+	std::cout << account << std::endl; 
 }
+

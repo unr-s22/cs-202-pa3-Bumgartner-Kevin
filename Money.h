@@ -17,11 +17,11 @@ public:
 			//  dollars) and rounds to the nearest cent
 	
 	//getters
-	std::string getFigure();		//Use getFigure() to overload '<<'
+	std::string getFigure();		//This getFigure() function is used to overload '<<'
 	int getCents(){ return cents; }
 	bool isWithdrawal();			//NOTE: isWithdrawal() is true if money is negative.
 	
-	static Money add(Money, Money);		//TODO: Use this to overload '+'
+	Money operator+(Money);			//This overloads '+'
 };
 
 #endif

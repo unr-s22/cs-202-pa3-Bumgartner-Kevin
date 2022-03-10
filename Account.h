@@ -15,9 +15,10 @@ private:
 public:
 	Account(Money);			//Initiates an account with an initial deposit.
 	Account(double);		//Initiates an account with an initial deposit constructed from a double.
-	std::string printAccount();	//Produces the output required by the assignment.
+	friend std::ostream& extract(std::ostream&, Account);//Produces the output required by the assignment.
 	void updateBalance();		//Brings balance up to date with the accounting vector.
 	Money getBalance();		//Returns the current balance.  If needed, the balance is updated first.
+	std::vector<Money> getAccounting();
 	void deposit(Money);		//Adds a deposit to the account.
 	void deposit(double);		//Adds a deposit to the account after constructing a money object.
 	void withdraw(Money);		//Adds a withdrawal to the account.

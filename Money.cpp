@@ -13,6 +13,11 @@ Money::Money(double dollars){
 		cents += static_cast<int>(round(dollars));
 }
 
+std::ostream& operator<<(std::ostream& stream, Money money){
+	stream << money.getFigure();
+	return stream;
+}
+
 //This returns the string we'd like to use for overloading '<<'
 //Not sure yet if it's ok to return "-$100.00" for a negative
 // (withdrawal) but for now let's keep it this way.  Can always just
@@ -41,10 +46,10 @@ bool Money::isWithdrawal(){
 }
 
 //Adds two moneys together, returns a money.
-Money Money::add(Money addend1, Money addend2){
-	int centSum = addend1.getCents() + addend2.getCents();
+Money Money::operator+(Money addend){
+	int centSum = this->getCents() + addend.getCents();
 	Money sum(static_cast<double>(centSum)/100.0);
 	return sum;
 }
 
-//TODO We need overloads for >, <, >=, <=, ==, !=, and <<.  The overload for << should use getFigure().  But he also says we need to use a friend function for the << overload.  Isn't that just the normal way to overload an operator?
+//TODO We need overloads for >, <, >=, <=, ==, !=, and <<.
