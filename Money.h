@@ -21,7 +21,9 @@ public:
 	int getCents(){ return cents; }
 	bool isWithdrawal();			//NOTE: isWithdrawal() is true if money is negative.
 	
-	Money operator+(Money);			//This overloads '+'
+	Money operator+(Money);			//This overloads '+'.  Because we use the sign of cents
+						// to determine if Money is a withdrawal, we actually
+						//don't even need an overload for '-'.  Just add.
 };
 
 #endif

@@ -51,5 +51,3 @@ Money Money::operator+(Money addend){
 	Money sum(static_cast<double>(centSum)/100.0);
 	return sum;
 }
-
-//TODO We need overloads for >, <, >=, <=, ==, !=, and <<.

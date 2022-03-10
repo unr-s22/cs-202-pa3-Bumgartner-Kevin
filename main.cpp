@@ -14,12 +14,13 @@
 #include <iostream>
 #include "Account.cpp"
 
+//TODO We need overloads for >, <, >=, <=, ==, !=, and <<.
+
 //NOTES OVERALL: This class heirarchy has two tiers.  The Account class contains a vector of class Money.
 //The vector contains Money objects with positive integer cents (called "deposits") and Money objects with
 //negative integer cents (called "withdrawals").  Each money object can be queried to test if it is a
 //deposit or a withdrawal, using the isWithdrawal() method.  The entire vector can be added together to
 //get the total balance.  The initial deposit is considered a deposit.
-
 
 //In the following code, we are using the overloaded constructor to give an initial deposit as a double
 //instead of as a money object.  The constructor simply constructs a money object based on the double.
