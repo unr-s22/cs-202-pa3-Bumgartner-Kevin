@@ -106,3 +106,29 @@ void Account::withdraw(double dep){
 		accounting.push_back(depo);
 	updateNeeded=true;
 }
+
+//Comparison operators
+
+bool Account::operator==(Account account){
+	return getBalance() == account.getBalance();
+}
+
+bool Account::operator>=(Account account){
+	return getBalance() >= account.getBalance();
+}
+
+bool Account::operator<=(Account account){
+	return getBalance() <= account.getBalance();
+}
+
+bool Account::operator>(Account account){
+	return getBalance() > account.getBalance();
+}
+
+bool Account::operator<(Account account){
+	return getBalance() < account.getBalance();
+}
+
+bool Account::operator!=(Account account){
+	return getBalance() != account.getBalance();
+}

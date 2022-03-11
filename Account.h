@@ -23,6 +23,13 @@ public:
 	void deposit(double);		//Adds a deposit to the account after constructing a money object.
 	void withdraw(Money);		//Adds a withdrawal to the account.
 	void withdraw(double);		//Adds a withdrawal after constructing the money object.
+	
+	bool operator==(Account);
+	bool operator>=(Account);
+	bool operator<=(Account);
+	bool operator>(Account);	//Comparison operators
+	bool operator<(Account);
+	bool operator!=(Account);
 };
 
 #endif

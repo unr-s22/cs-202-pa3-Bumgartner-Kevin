@@ -37,6 +37,6 @@ int main(){
 	std::cout << account << std::endl;
 	account.withdraw(300.10);
 	account.withdraw(201.34);
-	std::cout << account << std::endl; 
+	std::cout << account << std::endl;
 }
 

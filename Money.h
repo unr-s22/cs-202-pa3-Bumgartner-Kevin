@@ -24,6 +24,12 @@ public:
 	Money operator+(Money);			//This overloads '+'.  Because we use the sign of cents
 						// to determine if Money is a withdrawal, we actually
 						//don't even need an overload for '-'.  Just add.
+	bool operator==(Money);
+	bool operator>=(Money);
+	bool operator<=(Money);
+	bool operator>(Money);			//Comparison operators
+	bool operator<(Money);
+	bool operator!=(Money);
 };
 
 #endif

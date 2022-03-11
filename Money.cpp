@@ -51,3 +51,23 @@ Money Money::operator+(Money addend){
 	Money sum(static_cast<double>(centSum)/100.0);
 	return sum;
 }
+
+//Comparison operators
+bool Money::operator==(Money money){
+	return this->cents==money.getCents();
+}
+bool Money::operator>=(Money money){
+	return this->cents>=money.getCents();
+}
+bool Money::operator<=(Money money){
+	return this->cents<=money.getCents();
+}
+bool Money::operator>(Money money){
+	return this->cents>money.getCents();
+}
+bool Money::operator<(Money money){
+	return this->cents<money.getCents();
+}
+bool Money::operator!=(Money money){
+	return this->cents!=money.getCents();
+}
